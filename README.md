@@ -1,5 +1,7 @@
-# FrontEndFrameworkTemplate
+# FrontEndFrameworkTemplate v1.0  3/2/2019
 Template of NPM software to make development easier
+
+Run "npm install" in the terminal on the main directory before running Gulp.
 
 Use Gulp to coordinate changes to development files to provide quick feedback displayed on an open browser.
 
