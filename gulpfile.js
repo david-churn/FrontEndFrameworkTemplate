@@ -30,7 +30,7 @@ sass.compiler = require('node-sass');
 // looks for index.html in the same directory as this gulp file.
 function bsInit() {
   browserSync.init({
-       server: "./"
+       server: "./build/"
    });
 }
 
@@ -119,6 +119,14 @@ function buildScss () {
     .pipe(browserSync.stream())
 }
 
+// Move CSS - this manual process should not be included in the watchers.  It is meant to copy preformatted .css files like normalize.css into the build directory.  You want this one to be explicitly requested.
+function copyCSS() {
+  return gulp.src('./dev/*.css')
+    .pipe(size({showFiles:true, ShowTotal:true}))
+    .pipe(gulp.dest('./build/'))
+    .pipe(browserSync.stream())
+}
+
 // watchers
 function watchFonts() {
   gulp.watch('./dev/fonts/*.*',handleFonts);
@@ -154,8 +162,11 @@ gulp.task('onlyJS', handleJS);
 let handleScss = gulp.series(buildScss);
 gulp.task('onlyScss',handleScss);
 
+let handleCSS = gulp.series(copyCSS);
+gulp.task('copyCSS',copyCSS);
+
 // Build from dev
-let buildDev = gulp.series(handleFonts, handleHTML, handleImages, handleJS, handleScss);
+let buildDev = gulp.series(handleFonts, handleHTML, handleImages, handleJS, copyCSS, handleScss);
 gulp.task('build', buildDev);
 
 // Kick off every process then watch for changes
