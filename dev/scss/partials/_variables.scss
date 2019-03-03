@@ -1,0 +1,25 @@
+// variables, mixins, and non-exitent placeholder classes
+// Note:  placeholders are not compiled into the result
+
+$font-stack: 'windsans', Arial, sans-serif;
+$bluish: #4286f4;
+$grayish: #9d9d9d;
+$greentea : #d1efb5;
+$indigo: #2A4747;
+$smoky : #0f1108;
+$sunny : #fcfc7e;
+$whiteish : #f0eff4;
+
+@mixin thin-border($color, $radius) {
+    border-width: 1px;
+    border-color: $color;
+    border-radius: $radius;
+    border-style: solid;
+}
+
+@mixin center_h_v() {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}

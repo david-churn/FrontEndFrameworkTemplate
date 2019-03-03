@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>gulp testing</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="/styles.min.css">
+  </head>
+  <body>
+    <header class="center">
+      Nothing in the header.
+    </header>
+    <main>
+      <h1>Gulp Testing Process</h1>
+      <div class="">
+        <button type="button" id="push-me">Push Me</button>
+        <span id="sentence"></span>
+      </div>
+      <div class="">
+        <ul>
+          <li>Testing Gulp</li>
+          <ol>
+            <li>Verify watch is using ./build directory</li>
+            <li>Test HTML - check</li>
+            <li>Test SASS compile - check</li>
+            <li>Test fonts - check</li>
+            <li>Test images</li>
+            <ol>
+              <li>.gif - check</li>
+              <li>.jpg - check</li>
+              <li>.png - check</li>
+            </ol>
+            <li>Test JavaScript - check
+            <ol>
+              <li>Ignore "use strict" message.  It wants the "use strict" at the top of each function.  Turning it off removes the strict requirement.</li>
+              <li>Added .jshintrc to main directory with the following object <code>{"browser":true,
+                            globals":{"console":true},
+                            "eqeqeq":true,
+                            "latedef":true,
+                            "nocomma":true,
+                            "unused":true}</code></li>
+            </ol>
+          </ol>
+          <li>Usage Notes</li>
+          <ol>
+            <li>How do we handle putting library stylesheets like <span>normalize.css</span> into the /build directory? - Separate task.  In build process but  not in watchers.</li>
+            <li>Allows start up when no files are present in ./dev</li>
+            <li>Verify files are built to not require knowing they are in the ./build directory</li>
+          </ol>
+        </ul>
+      </div>
+      <div class=""><h2> JavaScript Animation</h2>
+        <div class="screen">
+          <div id="ball" class="ball">^_^</div>
+        </div>
+      </div>
+      <div class=""><h2>Gallery</h2>
+        <img src="./images/wolf.png" alt=" wolf howling">
+        <img src="./images/hey-hey-hey-hey.gif" alt="irritating dog picture">
+        <img src="./images/Isle of Dogs.jpg" alt="Isle of Dogs">
+      </div>
+    </main>
+    <footer class="center">
+      &copy 2019
+    </footer>
+    <script type="text/javascript" src="./script.js"></script>
+
+  </body>
+</html>
