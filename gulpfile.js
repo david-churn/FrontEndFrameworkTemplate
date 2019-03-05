@@ -1,6 +1,7 @@
 'use strict';
 // 02/26/2019 David Churn created
-//  Start this on the command line using "gulp watch"
+// 3/5/2019 Davd Churn removed .css copy and added assets/ copy
+//  Start this on the command line "gulp watch"
 //  Watching for font, html, images, javascript, and scss changes
 
 // third party modules
@@ -112,7 +113,15 @@ function buildScss () {
     .pipe(gulp.dest('./build/'))
     .pipe(browserSync.stream())
 }
-
+// Copy assets
+//  copy all files in assets
+//  show total size of all image files
+//  refresh the browser
+function copyAssets() {
+  return gulp.src('./dev/assets/*.*')
+    .pipe(size())
+    .pipe(gulp.dest('./build/assets/'))
+}
 // watchers
 function watchFonts() {
   gulp.watch('./dev/fonts/*.*',handleFonts);
@@ -128,6 +137,9 @@ function watchJS() {
 }
 function watchScss() {
   gulp.watch('./dev/scss/**/*.scss',handleScss)
+}
+function watchAssets() {
+  gulp.watch('./dev/assets/*.*',handleAssets)
 }
 
 // Action starts here!
@@ -148,12 +160,15 @@ gulp.task('onlyJS', handleJS);
 let handleScss = gulp.series(buildScss);
 gulp.task('onlyScss',handleScss);
 
+let handleAssets = gulp.series(copyAssets);
+gulp.task('onlyAssets',handleAssets)
+
 // Build from dev
-let buildDev = gulp.series(handleFonts, handleHTML, handleImages, handleJS, handleScss);
+let buildDev = gulp.series(handleFonts, handleHTML, handleImages, handleJS, handleScss,handleAssets);
 gulp.task('build', buildDev);
 
 // Kick off every process then watch for changes
-let watchers = gulp.parallel(bsInit, watchFonts, watchHTML, watchImages, watchJS, watchScss);
+let watchers = gulp.parallel(bsInit, watchFonts, watchHTML, watchImages, watchJS, watchScss, watchAssets);
 
 let buildNWatch = gulp.series(buildDev, watchers);
 gulp.task('watch', buildNWatch);
