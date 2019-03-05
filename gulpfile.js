@@ -1,13 +1,7 @@
 'use strict';
 // 02/26/2019 David Churn created
-//  Start this on the command line "gulp watch"
+//  Start this on the command line using "gulp watch"
 //  Watching for font, html, images, javascript, and scss changes
-
-// Known to do
-// ? How likely is it to have multiple HTML files? Will handle multiple
-// 1) Evaluate JShint messages...
-// ? Should images and Fonts be part of watch process?  Yes, evaluate.
-// 6) Test all the processes.  Verify watchers are working.
 
 // third party modules
 const gulp = require('gulp');
